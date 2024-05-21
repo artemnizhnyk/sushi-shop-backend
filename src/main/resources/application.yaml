@@ -8,7 +8,7 @@ spring:
     import: optional:file:.env[.properties]
 
   datasource:
-    url: jdbc:postgresql://${HOST}/${POSTGRES_DB}?currentSchema=${POSTGRES_SCHEMA}
+    url: jdbc:postgresql://${POSTGRES_HOST}/${POSTGRES_DB}?currentSchema=${POSTGRES_SCHEMA}
     username: ${POSTGRES_USERNAME}
     password: ${POSTGRES_PASSWORD}
     driver-class-name: org.postgresql.Driver
@@ -16,6 +16,10 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: none
+      default_schema: ${POSTGRES_SCHEMA}
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
   liquibase:
     change-log: classpath:liquibase/db.changelog.yaml
     enabled: true
