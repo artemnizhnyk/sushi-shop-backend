@@ -22,4 +22,9 @@ public class ItemServiceImpl implements ItemService {
                 ? new ArrayList<>()
                 : allItems;
     }
+
+    @Override
+    public Item createItem(final Item item) {
+        return itemRepository.save(item);
+    }
 }

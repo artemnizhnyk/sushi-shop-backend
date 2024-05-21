@@ -1,17 +1,25 @@
 package com.artemnizhnyk.sushishopbackend.domain.model.item;
 
-import com.artemnizhnyk.sushishopbackend.domain.model.BaseEntity;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Type;
+
+import java.util.UUID;
 
 @Getter
 @Setter
 @Table(name = "items")
 @Entity
-public class Item extends BaseEntity {
+public class Item {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+    @Column(name = "uuid")
+    private String uuid = UUID.randomUUID().toString();
     @Column(name = "name", unique = true, nullable = false)
     private String name;
     @Column(name = "description")
